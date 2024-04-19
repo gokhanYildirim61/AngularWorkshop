@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable, model } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModelListItemDto } from '../models/model-list-item-dto';
@@ -17,20 +17,18 @@ export class ModelsApiService {
     brandId: number | null = null,
     searchBrandName: string | null = null,
     page:number | null = null,
-    per_page:number | null = null,
-  ): Observable<ModelListItemDto[]> {
-    const requestQueryParams: any = {
-      // brandId: brandId
-    };
+    limit:number | null = null,
+  ): Observable<HttpResponse<ModelListItemDto[]>> {
+    const requestQueryParams: any = {};
     if (brandId !== null) requestQueryParams.brandId = brandId;
     if (searchBrandName) requestQueryParams.name_like = searchBrandName;
     if(page) requestQueryParams._page=page;
-    if(per_page)requestQueryParams._per_page=per_page;
-
-    return this.http.get<ModelListItemDto[]>('http://localhost:3000/models', {
-      params: requestQueryParams, // ?brandId=1&name_like=land
-    });
+    if(limit)requestQueryParams._limit=limit;
   
+    return this.http.get<ModelListItemDto[]>('http://localhost:3000/models', {
+      params: requestQueryParams,
+      observe: 'response'
+    });
   }
 
   postModel(model: PostModelRequest): Observable<PostModelResponse>{

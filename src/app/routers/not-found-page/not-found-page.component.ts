@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-not-found-page',
@@ -11,4 +14,27 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './not-found-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFoundPageComponent { }
+export class NotFoundPageComponent implements OnInit {
+  countdown: number = 10;
+
+  constructor(
+    private router: Router, 
+    private change: ChangeDetectorRef
+  ) { }
+
+  ngOnInit(): void {
+    const countdown$: Observable<number> = of(this.countdown).pipe(delay(this.countdown * 1000));
+
+    countdown$.subscribe(() => {
+      this.router.navigate(['/home']);
+    });
+
+    const intervalId = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(intervalId);
+      }
+      this.change.markForCheck();
+    }, 1000);
+  }
+}

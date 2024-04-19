@@ -24,12 +24,10 @@ import { FormsModule } from '@angular/forms';
 export class HomePageComponent {
   selectedBrandId: number | null = null;
   searchBrandName: string | null = null;
+  selectedItem: number = 10;
 
   constructor(private change:ChangeDetectorRef) {
-    // setTimeout(() => {
-    //   this.searchBrandName = 'BMW';
-    //   this.change.markForCheck();
-    // }, 5000);
+
   }
 
   onBrandSelect(brandId: number | null) {

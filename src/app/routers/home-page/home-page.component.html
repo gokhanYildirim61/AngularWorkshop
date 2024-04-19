@@ -1,12 +1,42 @@
-<h1>Rent A Car</h1>
-<p>Find the best car for you!</p>
+<div class="container-fluid">
 
-<app-brands-list (selectBrand)="onBrandSelect($event)"></app-brands-list>
-<!-- $event : event'in verdiği veriyi almamızı sağlayan özel bir keyword. -->
-<hr />
-Search: <input type="text" [(ngModel)]="searchBrandName" />
-<!-- FormsModule ile gelen ngModel benim için input ile state'i birbirine iki yönlü atama olacak şekilde bağlamama yardımcı oluyor -->
-<app-models-list
-  [brandId]="selectedBrandId"
-  [searchBrandName]="searchBrandName"
-></app-models-list>
+  <div class="container-fluid row markalar">
+    <div class="col-9">
+      <app-brands-list (selectBrand)="onBrandSelect($event)"></app-brands-list>
+    </div>
+    <!-- Search bar -->
+    
+    <div class="col-3">
+      Search: <input class="me-2" type="text" [(ngModel)]="searchBrandName" />
+    </div>
+  
+  </div>
+  <div class="container-fluid row">
+    <hr />
+    <div class="container-fluid col-8" >
+      <app-models-list
+        [brandId]="selectedBrandId"
+        [searchBrandName]="searchBrandName"
+        [itemPerPage]="selectedItem"
+      ></app-models-list>
+    </div>
+    <div class="col-3">
+
+      <div class="dropdown-center">
+        item per page:
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{selectedItem}}
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="selectedItem = 2">2</a></li>
+          <li><a class="dropdown-item" (click)="selectedItem = 3">3</a></li>
+          <li><a class="dropdown-item" (click)="selectedItem = 5">5</a></li>
+          <li><a class="dropdown-item" (click)="selectedItem = 10">10</a></li>
+          <li><a class="dropdown-item" (click)="selectedItem = 20">20</a></li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
+
+</div>

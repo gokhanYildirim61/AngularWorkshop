@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './routers/home-page/home-page.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
-import { TestPageComponent } from './routers/test-page/test-page.component';
 import { NotFoundPageComponent } from './routers/not-found-page/not-found-page.component';
 import { CreateBrandPageComponent } from './routers/create-brand-page/create-brand-page.component';
 import { CreateModelPageComponent } from './routers/create-model-page/create-model-page.component';
@@ -27,30 +26,38 @@ export const routes: Routes = [
       }
     ]
   },
-  // Test Page
   {
-    path: 'layout-test',
-    component: TestPageComponent
+    path: 'brands',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'create',
+        component: CreateBrandPageComponent,
+      },
+      {
+        path:'update',
+        component:UpdateBrandPageComponent,
+      },
+    
+    ]
   },
-  // Create Brand Page
   {
-    path: 'brands/create',
-    component: CreateBrandPageComponent,
-  },
-  {
-    path:'brands/update',
-    component:UpdateBrandPageComponent,
+    path: 'models',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'create',
+        component:CreateModelPageComponent,
+      },
+      {
+        path: 'update',
+        component:UpdateModelPageComponent,
+    
+      },
+    
+    ]
   },
 
-  {
-    path: 'models/create',
-    component:CreateModelPageComponent,
-  },
-  {
-    path: 'models/update',
-    component:UpdateModelPageComponent,
-
-  },
   // 404 Not Found Page
   {
     path: '**', // Her path'de çalışır. En sona yazılmalı.

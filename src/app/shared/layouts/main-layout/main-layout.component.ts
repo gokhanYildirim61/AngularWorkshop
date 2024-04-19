@@ -17,4 +17,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './main-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainLayoutComponent { }
+export class MainLayoutComponent { 
+  title = 'Rent A Car';
+}
