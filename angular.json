@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rentACar": {
+    "rentacar": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/rent-acar",
+            "outputPath": "dist/rentacar",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -30,9 +30,12 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rentACar:build:production"
+              "buildTarget": "rentacar:build:production"
             },
             "development": {
-              "buildTarget": "rentACar:build:development"
+              "buildTarget": "rentacar:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "rentACar:build"
+            "buildTarget": "rentacar:build"
           }
         },
         "test": {
@@ -97,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e3fc4130-e530-4231-87d3-c3979f5ead69"
   }
 }
