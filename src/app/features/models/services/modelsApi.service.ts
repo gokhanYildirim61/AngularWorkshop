@@ -1,11 +1,12 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable, model } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModelListItemDto } from '../models/model-list-item-dto';
 import { PostModelRequest } from '../models/post-model-request';
 import { PostModelResponse } from '../models/post-model-response';
 import { UpdateModelRequest } from '../models/update-model-request';
 import { UpdateModelResponse } from '../models/update-model-response';
+import { ModelDetailsDto } from '../models/model-details-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,10 @@ export class ModelsApiService {
       `http://localhost:3000/models/${id}`,
      model,
     );
+  }
+
+  getById(id: number): Observable<ModelDetailsDto> {
+    return this.http.get<ModelDetailsDto>(`http://localhost:3000/models/${id}`);
   }
 
 

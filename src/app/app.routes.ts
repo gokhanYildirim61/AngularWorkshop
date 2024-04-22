@@ -6,6 +6,9 @@ import { CreateBrandPageComponent } from './routers/create-brand-page/create-bra
 import { CreateModelPageComponent } from './routers/create-model-page/create-model-page.component';
 import { UpdateBrandPageComponent } from './routers/update-brand-page/update-brand-page.component';
 import { UpdateModelPageComponent } from './routers/update-model-page/update-model-page.component';
+import { ModelDetailsPageComponent } from './routers/model-details-page/model-details-page.component';
+import { CustomerDetailPageComponent } from './routers/customer-detail-page/customer-detail-page.component';
+import { RentalDetailsPageComponent } from './routers/rental-details-page/rental-details-page.component';
 
 export const routes: Routes = [
   // Home
@@ -23,7 +26,20 @@ export const routes: Routes = [
       {
         path: "models", // /home/models
         component: HomePageComponent,
+      },
+      {
+        path: "models/:modelId", // /home/models/1
+        component: ModelDetailsPageComponent
+      },
+      {
+        path: "customers", 
+        component: CustomerDetailPageComponent
+      },
+      {
+        path: "rentals", 
+        component: RentalDetailsPageComponent
       }
+
     ]
   },
   {
@@ -57,6 +73,7 @@ export const routes: Routes = [
     
     ]
   },
+
 
   // 404 Not Found Page
   {

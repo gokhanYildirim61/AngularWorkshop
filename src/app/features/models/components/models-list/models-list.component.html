@@ -1,8 +1,9 @@
-{{brandId}}
-<p *ngFor="let item of list; let i = index">
-  {{ item.name }}
-  <!-- {{ i }} -->
-</p>
+<ul>
+  <li *ngFor="let item of list; let i = index" routerLink="/home/models/{{item.id}}">
+    {{ item.name }}
+  </li>
+</ul>
+
 
 <!-- >= Angular 17 -->
 <!-- @for (item of list; track $index) {
